@@ -46,11 +46,10 @@ void setBitByAddress(void *position, int bit) {
     // this function changes bit by memory address to 'bit'
     if (position == NULL) {
         printf("Error: Position is NULL\n");
-
-    } else if (bit == 0 || bit == 1) {
-        *((int *) position) = bit;
-    } else {
+    } else if (bit != 0 && bit != 1) {
         printf("Error: Bit has to be 1 or 0\n");
+    } else {
+        *((int *) position) = bit;
     }
 
 }
