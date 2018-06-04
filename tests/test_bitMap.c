@@ -2,27 +2,28 @@
 #include "bitMap.h"
 
 START_TEST (test_setBitByNumber)
-{
-    //YOUR CODE HERE
-}
+    {
+        int bitmap[] = {1, 0, 1, 1};
+        printf("%d\n", getBitByNumber(bitmap, 4, 1));
+    }
 END_TEST
 
 START_TEST (test_getBitByNumber)
-{
-    //YOUR CODE HERE
-}
+    {
+        //YOUR CODE HERE
+    }
 END_TEST
 
 START_TEST (test_setBitByAddress)
-{
-    //YOUR CODE HERE
-}
+    {
+        //YOUR CODE HERE
+    }
 END_TEST
 
 START_TEST (test_getBitByAddress)
-{
-    //YOUR CODE HERE
-}
+    {
+        //YOUR CODE HERE
+    }
 END_TEST
 
 Suite *str_suite(void) {

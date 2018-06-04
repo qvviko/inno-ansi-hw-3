@@ -5,11 +5,11 @@
 #ifndef __BITMAP_H_
 #define __BITMAP_H_
 #include <stdio.h>
-#include <math.h>
+#include <limits.h>
 
-void setBitByNumber(int* array, int bit, int position);
+void setBitByNumber(int *array, int len, int bit, int position);
 
-int getBitByNumber(int* array, int position);
+int getBitByNumber(int *array, int len, int position);
 
 void setBitByAddress(void* position, int bit);
 
