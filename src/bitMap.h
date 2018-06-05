@@ -8,9 +8,9 @@
 #include <stdio.h>
 #include <limits.h>
 
-void setBitByNumber(int *array, int bit, int position);
+void setBitByNumber(int *array, int bit, int position, int ar_pos);
 
-int getBitByNumber(int *array, int position);
+int getBitByNumber(int *array, int position, int ar_pos);
 
 void setBitByAddress(void *position, int bit);
 

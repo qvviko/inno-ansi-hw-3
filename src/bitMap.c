@@ -3,14 +3,14 @@
 //
 #include "bitMap.h"
 
-void setBitByNumber(int *array, int bit, int position) {
+void setBitByNumber(int *array, int bit, int position, int ar_pos) {
     // array - pointer to the begining of the array
     // position - number of the bit in the 'array'
     // bit - have to be equal to 0 or 1
     //
     // this function changes bit with number 'position' to the 'bit'
 
-    if (position < 0) {
+    if (position < 0 && ar_pos < 0) {
         printf("Error: position has to be greater then zero\n");
     } else if (position >= (sizeof(int) * 8)) {
         printf("Error: position is to high\n");
@@ -21,19 +21,20 @@ void setBitByNumber(int *array, int bit, int position) {
     } else {
         unsigned int mask = 1u << (sizeof(unsigned int) * 8 - 1);
         mask = mask >> position;
+        int *to_change = (array + ar_pos);
         if (bit == 1) {
-            *array = *array | mask;
+            *to_change = *to_change | mask;
         } else {
-            *array = *array & (~mask);
+            *to_change = *to_change & (~mask);
         }
     }
 }
 
 
-int getBitByNumber(int *array, int position) {
+int getBitByNumber(int *array, int position, int ar_pos) {
     // this function returns position's bit from the array
 
-    if (position < 0) {
+    if (position < 0 && ar_pos < 0) {
         printf("Error: position has to be greater then zero\n");
         return INT_MIN;
     } else if (position >= (sizeof(int) * 8)) {
@@ -45,7 +46,7 @@ int getBitByNumber(int *array, int position) {
     } else {
         unsigned int mask = 1u << (sizeof(unsigned int) * 8 - 1);
         mask = mask >> position;
-        unsigned int to_return = (*array) & mask;
+        unsigned int to_return = (*array + ar_pos) & mask;
         if (to_return == 0) {
             return 0;
         } else {
@@ -84,4 +85,4 @@ int getBitByAddress(void *position) {
     }
     unsigned int to_return = *((unsigned int *) position) >> (sizeof(unsigned int) * 8 - 1);
     return to_return;
-}
+}p

@@ -6,7 +6,7 @@ START_TEST (test_setBitByNumber)
     {
         int a = 0xffffffff;
         printf("int : %i, hex : %x\n", a, a);
-        setBitByNumber(&a, 0, 0);
+        setBitByNumber(&a, 0, 0, 0);
         printf("int : %i, hex : %x\n", a, a);
 
     }
