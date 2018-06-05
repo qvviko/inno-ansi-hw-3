@@ -4,7 +4,11 @@
 
 START_TEST (test_setBitByNumber)
     {
-        int bitmap[] = {1, 0, 1, 1};
+        int a = 0xffffffff;
+        printf("int : %i, hex : %x\n", a, a);
+        setBitByNumber(&a, 0, 0);
+        printf("int : %i, hex : %x\n", a, a);
+
     }
 END_TEST
 
@@ -22,8 +26,8 @@ END_TEST
 
 START_TEST (test_getBitByAddress)
     {
-        unsigned int a = 0x0fffffff;
-        printf("%u\n", getBitByAddress(&(a)));
+//        unsigned int a = 0x0fffffff;
+//        printf("%u\n", getBitByAddress(&(a)));
     }
 END_TEST
 
