@@ -1,10 +1,10 @@
 #include <check.h>
 #include "bitMap.h"
+#include "limits.h"
 
 START_TEST (test_setBitByNumber)
     {
         int bitmap[] = {1, 0, 1, 1};
-        printf("%d\n", getBitByNumber(bitmap, 4, 1));
     }
 END_TEST
 
@@ -22,7 +22,8 @@ END_TEST
 
 START_TEST (test_getBitByAddress)
     {
-        //YOUR CODE HERE
+        unsigned int a = 0x0fffffff;
+        printf("%u\n", getBitByAddress(&(a)));
     }
 END_TEST
 

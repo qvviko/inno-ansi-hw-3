@@ -3,7 +3,7 @@
 //
 #include "bitMap.h"
 
-void setBitByNumber(int *array, int len, int bit, int position) {
+void setBitByNumber(int *array, int bit, int position) {
     // array - pointer to the begining of the array
     // position - number of the bit in the 'array'
     // bit - have to be equal to 0 or 1
@@ -12,30 +12,45 @@ void setBitByNumber(int *array, int len, int bit, int position) {
 
     if (position < 0) {
         printf("Error: position has to be greater then zero\n");
+    } else if (position > (sizeof(int) * 8)) {
+        printf("Error: position is to high\n");
+    } else if (bit != 0 && bit != 1) {
+        printf("Error: Bit has to be 1 or 0\n");
     } else if (array == NULL) {
         printf("Error: array is NULL\n");
-    } else if (position > (len - 1)) {
-        printf("Error: position has to be less then length\n");
     } else {
-        setBitByAddress((array + position), bit);
+        unsigned int mask = 1u << (sizeof(unsigned int) * 8 - 1);
+        mask = mask >> position;
+        if (bit == 1) {
+            *array = *array | mask;
+        } else {
+            *array = *array & (~mask);
+        }
     }
 }
 
 
-int getBitByNumber(int *array, int len, int position) {
+int getBitByNumber(int *array, int position) {
     // this function returns position's bit from the array
 
     if (position < 0) {
         printf("Error: position has to be greater then zero\n");
         return INT_MIN;
+    } else if (position > (sizeof(int) * 8)) {
+        printf("Error: position is to high\n");
+        return INT_MIN;
     } else if (array == NULL) {
         printf("Error: array is NULL\n");
         return INT_MIN;
-    } else if (position > (len - 1)) {
-        printf("Error: position has to be less then length\n");
-        return INT_MIN;
     } else {
-        return getBitByAddress(array + position);
+        unsigned int mask = 1u << (sizeof(unsigned int) * 8 - 1);
+        mask = mask >> position;
+        unsigned int to_return = (*array) & mask;
+        if (to_return == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }
 
@@ -49,7 +64,13 @@ void setBitByAddress(void *position, int bit) {
     } else if (bit != 0 && bit != 1) {
         printf("Error: Bit has to be 1 or 0\n");
     } else {
-        *((int *) position) = bit;
+        unsigned int mask = 1u << (sizeof(unsigned int) * 8 - 1);
+        unsigned int *to_change = (unsigned int *) position;
+        if (bit == 0) {
+            *to_change = *to_change & (~mask);
+        } else {
+            *to_change = *to_change | mask;
+        }
     }
 
 }
@@ -61,11 +82,6 @@ int getBitByAddress(void *position) {
         printf("Error: Position is NULL\n");
         return INT_MIN;
     }
-    int to_return = *((int *) position);
-
-    if (to_return != 0 && to_return != 1) {
-        printf("Error: This is not a bitmap\n");
-        return INT_MIN;
-    }
+    unsigned int to_return = *((unsigned int *) position) >> (sizeof(unsigned int) * 8 - 1);
     return to_return;
 }
