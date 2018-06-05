@@ -12,7 +12,7 @@ void setBitByNumber(int *array, int bit, int position) {
 
     if (position < 0) {
         printf("Error: position has to be greater then zero\n");
-    } else if (position > (sizeof(int) * 8)) {
+    } else if (position >= (sizeof(int) * 8)) {
         printf("Error: position is to high\n");
     } else if (bit != 0 && bit != 1) {
         printf("Error: Bit has to be 1 or 0\n");
@@ -36,7 +36,7 @@ int getBitByNumber(int *array, int position) {
     if (position < 0) {
         printf("Error: position has to be greater then zero\n");
         return INT_MIN;
-    } else if (position > (sizeof(int) * 8)) {
+    } else if (position >= (sizeof(int) * 8)) {
         printf("Error: position is to high\n");
         return INT_MIN;
     } else if (array == NULL) {
