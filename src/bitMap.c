@@ -85,4 +85,4 @@ int getBitByAddress(void *position) {
     }
     unsigned int to_return = *((unsigned int *) position) >> (sizeof(unsigned int) * 8 - 1);
     return to_return;
-}p
+}
